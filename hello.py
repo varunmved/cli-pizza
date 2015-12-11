@@ -14,7 +14,7 @@ def text():
     # put your own credentials here 
      pizza_emoji = (emoji.emojize(':slice_of_pizza:'))
      account_sid = 'AC1cc3d40a4dca1cd0ff1af031ff1b14ca'
-     auth_token  = '5011a96781ef26d63904ca3b8e3ccb35'
+     auth_token = '' 
      client = TwilioRestClient(account_sid,auth_token) 
      client.messages.create(
             to="+19167516308", 
