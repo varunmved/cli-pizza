@@ -9,6 +9,35 @@ import os
 
 app = Flask(__name__)
 
+
+'''
+validators
+'''
+
+def isValid(form, phoneNumber):
+  rawTextField = str(phoneNumber)
+  valueDesiredString = "value="
+  valueIndex = rawTextField.index(valueDesiredString) +6
+  numStr = rawTextField[valueIndex:len(rawTextField)-1]
+  numStr = (numStr[1:13])
+  print(numStr)
+  print(len(numStr))
+  if len(numStr)!= 12 or numStr[0] != "+" or not str.isdigit(numStr[1:13]):
+      raise ValidationError("Your phone number isn't a valid US/Canada number")
+
+'''
+classes
+'''
+class MyForm(Form):
+  failedCall = False
+  phoneNumber = TextField('phoneNumber', validators=[Required(), Length(min=12, max=12),isValid])
+
+
+
+'''
+Twilio routes
+'''
+
 @app.route('/text')
 def text():
     # put your own credentials here 
